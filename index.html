@@ -67,15 +67,25 @@
 <body>
     <div class="container-1">
         <form>
-            <input type="search" placeholder="Enter your city" id="enterCity"/>
-            <input type="submit" class="btn btn-primary" value="Search">
+            <input type="search" placeholder="Enter your city" id="enterCity" autocomplete="off"/>
+            <input type="submit" class="btn btn-primary w-20" value="Search">
         </form>
     </div>
     <br />
     <h1>Corrales, NM</h1>
-    <h2><em>Clear</em></h2>
+    <h2 id="description"><em>Clear</em></h2>
     <p> </p>
-    <h3>55&deg;</h3>
+
+    <h3>55<span class="units"><a href="#" id="celsius-link" class="active">°C</a> |
+        <a href="#" id="fahrenheit-link">°F</a></span></h3>
+       <div class="row">
+        <div class="col-4">
+            <ul>
+                <li>Humidity: <span id="humidity"></span>%</li>
+                <li>Wind: <span id="wind"></span> km/h</li>
+            </ul>
+        </div>
+        </div>
     <h4><em>Current Temperature</em></h4>
     <br />
     <div class="row">
