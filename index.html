@@ -72,11 +72,11 @@
         </form>
     </div>
     <br />
-    <h1>Corrales, NM</h1>
+    <h1 id="city">Corrales, NM</h1>
     <h2 id="description"><em>Clear</em></h2>
     <p> </p>
 
-    <h3>55<span class="units"><a href="#" id="celsius-link" class="active">°C</a> |
+    <h3 id="temperature">55<span class="units"><a href="#" id="celsius-link" class="active">°C</a> |
         <a href="#" id="fahrenheit-link">°F</a></span></h3>
        <div class="row">
         <div class="col-4">
@@ -133,9 +133,26 @@
             let city = input.value;
              
         let apiKey = "19e635cfd49a09267430a421d97c1f42";
-        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
         axios.get(apiUrl).then(displayWeather).then(input.value = "");
         }
+
+function displayTemperature(response) {
+    let temperatureElement = document.querySelector("#temperature");
+    let cityElement = document.querySelector("#city");
+    let descriptionElement = document.querySelector("#description");
+    let humidityElement = document.querySelector("#humidity");
+    let windElement = document.querySelector("#wind");
+    temperatureElement.innerHTML = Math.round(response.data.main.temp);
+    cityElement.innerHTML = response.data.name;
+    descriptionElement.innerHTML = response.data.weather[0].description;
+    humidityElement.innerHTML = response.data.main.humidity;
+    windElement.innerHTML = Math.round(response.data.wind.speed);
+}
+    let apiKey = "19e635cfd49a09267430a421d97c1f42";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayTemperature);
+
     let form = document.querySelector("form");
     form.addEventListener("submit", search);
 
@@ -155,11 +172,22 @@
     function displayWeather(response) {
         let temperature = Math.round(response.data.main.temp);
         let h3 = document.querySelector("h3");
-        h3.innerHTML = temperature + "&deg;";
+        h3.innerHTML = temperature;
         
     }
 
-   
+    function displayFahrenheitTemperature(event) {
+        event.preventDefault();
+        let temperatureElement = document.querySelector("#temperature");
+        let fahrenheitTemperature = (temperatureElement.innerHTML * 9) / 5 + 32;
+        temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+    }
+
+let celsiusTemperature = null;
+
+   let fahrenheitLink = document.querySelector("#fahrenheit-link");
+   fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
 
     
     </script>
