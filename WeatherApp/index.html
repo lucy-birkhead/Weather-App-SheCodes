@@ -192,20 +192,44 @@
                 );
             }
 
+                let fahrenheitLink = document.querySelector("#fahrenheit-link");
+                    fahrenheitLink.addEventListener("click", searchF);
+
+                let celsiusLink = document.querySelector("#celsius-link");
+                    celsiusLink.addEventListener("click", searchC);
+
             //CONTROLER
             let input = document.querySelector("#enterCity");
             let form = document.querySelector("form");
-            form.addEventListener("submit", search);
+            form.addEventListener("submit", searchC);
 
-            function search(event) {
+            function searchC(event) {
                 
                 event.preventDefault();
-
-                city = input.value;
+                if(input.value){
+                    city = input.value;
+                } else {
+                    city = cityElement.firstChild.data;
+                }
+                
                 let apiKey = "19e635cfd49a09267430a421d97c1f42";
                 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
                 axios.get(apiUrl).then(displayTemperature).then(input.value = "");
             }
+
+            function searchF(event) {
+
+                    event.preventDefault();
+
+                    if (input.value) {
+                        city = input.value;
+                    } else {
+                        city = cityElement.firstChild.data;
+                    }
+                    let apiKey = "19e635cfd49a09267430a421d97c1f42";
+                    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+                    axios.get(apiUrl).then(displayTemperature).then(input.value = "");
+                }
     </script>
 
 
