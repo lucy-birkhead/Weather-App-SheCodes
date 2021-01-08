@@ -28,7 +28,7 @@
         h2 {
             text-align: center;
             color: gray;
-            font-size: 16px;
+            font-size: 18px;
         }
     
         h3 {
@@ -46,7 +46,7 @@
     
         p {
             text-align: center;
-            color: white;
+            color: gray;
             font-size: 16px;
         }
     
@@ -87,6 +87,8 @@
             padding-left: 33rem;
     
         }
+
+     
     </style>
     <div class="container-1">
         <form>
@@ -168,6 +170,21 @@
             let apiKey = "19e635cfd49a09267430a421d97c1f42";
             let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
+            let now = new Date();
+                let p = document.querySelector("p");
+                let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                let day = days[now.getDay()];
+                let hours = now.getHours();
+                if (hours < 10) {
+                    hours = `0${hours}`;
+                }
+                let minutes = now.getMinutes();
+                if (minutes < 10) {
+                    minutes = `0${minutes}`;
+                }
+
+                p.innerHTML = `${day}, ${hours}:${minutes}`; 
+
             //VIEW
             let temperatureElement = document.querySelector("#temperature");
             let cityElement = document.querySelector("#city");
@@ -180,10 +197,12 @@
             function displayTemperature(response) {
 
                 celsiusTemperature = response.data.main.temp;
+                let description = response.data.weather[0].description;
+                let capDist = description.replace(description[0], description[0].toUpperCase());
 
                 temperatureElement.innerHTML = Math.round(response.data.main.temp);
                 cityElement.innerHTML = response.data.name;
-                descriptionElement.innerHTML = response.data.weather[0].description;
+                descriptionElement.innerHTML = capDist;
                 humidityElement.innerHTML = response.data.main.humidity;
                 windElement.innerHTML = Math.round(response.data.wind.speed);
                 iconElement.setAttribute(
