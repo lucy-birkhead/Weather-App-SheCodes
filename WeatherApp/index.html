@@ -112,7 +112,7 @@
             id="icon"
             class="float-center"
             />
-            <div id="temperature">55</div>
+            <div id="temperature"></div>
             <a href="#" id="celsius-link" class="active">°C |</a>
             <a href="#" id="fahrenheit-link">°F</a>
             <ul class="standard-text">
@@ -209,7 +209,7 @@
                     "src",
                     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
                 );
-            }
+            };
 
                 let fahrenheitLink = document.querySelector("#fahrenheit-link");
                     fahrenheitLink.addEventListener("click", searchF);
@@ -231,24 +231,23 @@
                     city = cityElement.firstChild.data;
                 }
                 
-                let apiKey = "19e635cfd49a09267430a421d97c1f42";
+                
                 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
                 axios.get(apiUrl).then(displayTemperature).then(input.value = "");
-            }
+            };
 
             function searchF(event) {
-
-                    event.preventDefault();
 
                     if (input.value) {
                         city = input.value;
                     } else {
                         city = cityElement.firstChild.data;
                     }
-                    let apiKey = "19e635cfd49a09267430a421d97c1f42";
+                    
                     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
                     axios.get(apiUrl).then(displayTemperature).then(input.value = "");
-                }
+                };
+                searchF({ target: "a#fahrenheit-link", buttons: 0, clientX: 658, clientY: 209, layerX: 658, layerY: 380 });
     </script>
 
 
