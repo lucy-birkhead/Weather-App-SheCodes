@@ -4,105 +4,120 @@
 <head>
     <title>Weather App</title>
     <meta charset="UTF-8" />
-    <link href="src/styles.css" />
+    <link type="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
     <script src="https://kit.fontawesome.com/71b5139668.js" crossorigin="anonymous"></script>
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
+</head>
+
+<body>
     <style>
         body {
             background-image: linear-gradient(to top, #6a85b6 0%, #bac8e0 100%);
         }
-
+    
         h1 {
             text-align: center;
             color: blue;
             font-family: arial;
             font-size: 30px;
         }
-
+    
         h2 {
             text-align: center;
-            color: white;
-            font-size: 16px;
+            color: gray;
+            font-size: 18px;
         }
-
+    
         h3 {
             text-align: center;
             color: blue;
             font-size: 40px;
-            
+    
         }
-
+    
         h4 {
             text-align: center;
-            color: white;
+            color: gray;
             font-size: 16px;
         }
-
+    
         p {
             text-align: center;
-            color: white;
+            color: gray;
             font-size: 16px;
         }
-
+    
         ul {
             list-style-type: none;
             position: static;
         }
-
+    
         #fahrenheit-link {
             font-size: 1rem;
         }
-
-         #celsius-link {
+    
+        #celsius-link {
             font-size: 1rem;
         }
-
+    
         .standard-text {
             font-size: 1rem;
             color: white;
             padding-right: 3rem;
             padding-top: 1rem;
         }
-
+    
         .container-1 {
             text-align: center;
+            padding-top: 10px;
         }
-
-        .col-4 {
-            text-align: center;
-        }
-
-        .row {
-            color: white;
-        }
+    
         .github {
             float: center;
             padding-left: 33rem;
-            
+    
         }
-    </style>
-</head>
 
-<body>
+        .weather-app-wrapper {
+            border-style: solid;
+            border-color: gray;
+            border-width: 3px;
+            margin: 10px 300px 10px 300px;
+        }
+
+     
+    </style>
+
+    <div class="weather-app-wrapper">
     <div class="container-1">
         <form>
-            <input type="search" placeholder="Enter your city" id="enterCity" autocomplete="off"/>
+            <input type="search" placeholder="Enter your city" id="enterCity" autocomplete="off" />
             <input type="submit" class="btn btn-primary w-20" value="Search">
         </form>
     </div>
-    <br />
-    <h1 id="city">Corrales, NM</h1>
-    <p> </p>
-    <h2 id="description"><em>Clear</em></h2>
-    
 
-    <h4><em>Current Temperature:</em></h4>
-    
+    <br />
+
+    <h1 id="city">Corrales</h1>
+
+    <p> </p>
+
+    <h2>Current Conditions:</h2>
+
+    <h4 id="description"><em>Clear</em></h4>
+
     <div class="units">
         <h3>
-            <div id="temperature">55</div>
+            <img 
+            src=""
+            alt=""
+            id="icon"
+            class="float-center"
+            />
+            <div id="temperature"></div>
             <a href="#" id="celsius-link" class="active">°C |</a>
             <a href="#" id="fahrenheit-link">°F</a>
             <ul class="standard-text">
@@ -111,134 +126,96 @@
             </ul>
         </h3>
     </div>
-    
-    
-        
-        
-      
-       
-    
-    <br />
-    <div class="row">
-        <div class="col-4"><i class="fas fa-cloud-sun"></i></div>
-        <div class="col-4">Saturday</div>
-        <div class="col-4">67&deg;</div>
     </div>
     <br />
-    <div class="row">
-        <div class="col-4"><i class="fas fa-cloud"></i></div>
-        <div class="col-4">Sunday</div>
-        <div class="col-4">56&deg;</div>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-4"><i class="fas fa-cloud"></i></div>
-        <div class="col-4">Monday</div>
-        <div class="col-4">62&deg;</div>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-4"><i class="far fa-sun"></i></div>
-        <div class="col-4">Tuesday</div>
-        <div class="col-4">57&deg;</div>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-4"><i class="far fa-sun"></i></div>
-        <div class="col-4">Wednesday</div>
-        <div class="col-4">56&deg;</div>
-    </div>
-    <br />
-    <a href="https://github.com/lucy-birkhead/Weather-App-SheCodes" class="github">Weather-App Github Repository</a>
-    <br />
+   <a class= github href="https://github.com/lucy-birkhead/Weather-App-SheCodes">Weather App Github Repository</a>
     <p>
         Coded by Lucy B.
     </p>
     <script>
-    function search(event) {
-            event.preventDefault();
-            
-            let input = document.querySelector("#enterCity");
-            let h1 = document.querySelector("h1");
-            h1.innerHTML = input.value;
-            let city = input.value;
-             
-        let apiKey = "19e635cfd49a09267430a421d97c1f42";
-        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-        axios.get(apiUrl).then(displayWeather).then(input.value = "");
-        }
+        // MODEL
+            let city = "Corrales";
+            let apiKey = "19e635cfd49a09267430a421d97c1f42";
+            let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-function displayTemperature(response) {
-    let temperatureElement = document.querySelector("#temperature");
-    let cityElement = document.querySelector("#city");
-    let descriptionElement = document.querySelector("#description");
-    let humidityElement = document.querySelector("#humidity");
-    let windElement = document.querySelector("#wind");
+            let now = new Date();
+                let p = document.querySelector("p");
+                let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                let day = days[now.getDay()];
+                let hours = now.getHours();
+                if (hours < 10) {
+                    hours = `0${hours}`;
+                }
+                let minutes = now.getMinutes();
+                if (minutes < 10) {
+                    minutes = `0${minutes}`;
+                }
 
-    celsiusTemperature = response.data.main.temp;
+                p.innerHTML = `${day}, ${hours}:${minutes}`; 
 
-    temperatureElement.innerHTML = Math.round(response.data.main.temp);
-    cityElement.innerHTML = response.data.name;
-    descriptionElement.innerHTML = response.data.weather[0].description;
-    humidityElement.innerHTML = response.data.main.humidity;
-    windElement.innerHTML = Math.round(response.data.wind.speed);
-}
-    let apiKey = "19e635cfd49a09267430a421d97c1f42";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(displayTemperature);
-
-    let form = document.querySelector("form");
-    form.addEventListener("submit", search);
-
-    
-    
-    let now = new Date();
-
-    let p = document.querySelector("p");
-
-    let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    let day = days[now.getDay()];
-    let hours= now.getHours();
-    if (hours < 10) {
-            hours = `0${hours}`;
-    }
-    let minutes= now.getMinutes();
-    if (minutes < 10) {
-            minutes = `0${minutes}`;
-    }
-
-    p.innerHTML = `${day}, ${hours}:${minutes}`;    
-
-    function displayWeather(response) {
-        let temperature = Math.round(response.data.main.temp);
-        let temp = document.querySelector("#temperature");
-        temp.innerHTML = temperature;
-        
-    }
-
-    function displayFahrenheitTemperature(event) {
-        event.preventDefault();
-        let temperatureElement = document.querySelector("#temperature");
-        let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-        temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-    }
-
-    function displayCelsiusTemperature(event) {
-            event.preventDefault();
+            //VIEW
             let temperatureElement = document.querySelector("#temperature");
-            temperatureElement.innerHTML = Math.round(celsiusTemperature);
-        }
+            let cityElement = document.querySelector("#city");
+            let descriptionElement = document.querySelector("#description");
+            let humidityElement = document.querySelector("#humidity");
+            let windElement = document.querySelector("#wind");
+            let iconElement = document.querySelector("#icon");
+            
 
-let celsiusTemperature = null;
+            function displayTemperature(response) {
 
-   let fahrenheitLink = document.querySelector("#fahrenheit-link");
-   fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+                celsiusTemperature = response.data.main.temp;
+                let description = response.data.weather[0].description;
+                let capDist = description.replace(description[0], description[0].toUpperCase());
 
-   let celsiusLink = document.querySelector("#celsius-link");
-   celsiusLink.addEventListener("click", displayCelsiusTemperature);
+                temperatureElement.innerHTML = Math.round(response.data.main.temp);
+                cityElement.innerHTML = response.data.name;
+                descriptionElement.innerHTML = capDist;
+                humidityElement.innerHTML = response.data.main.humidity;
+                windElement.innerHTML = Math.round(response.data.wind.speed);
+                iconElement.setAttribute(
+                    "src",
+                    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+                );
+            };
 
+                let fahrenheitLink = document.querySelector("#fahrenheit-link");
+                    fahrenheitLink.addEventListener("click", searchF);
 
-    
+                let celsiusLink = document.querySelector("#celsius-link");
+                    celsiusLink.addEventListener("click", searchC);
+
+            //CONTROLER
+            let input = document.querySelector("#enterCity");
+            let form = document.querySelector("form");
+            form.addEventListener("submit", searchC);
+
+            function searchC(event) {
+                
+                event.preventDefault();
+                if(input.value){
+                    city = input.value;
+                } else {
+                    city = cityElement.firstChild.data;
+                }
+                
+                
+                let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+                axios.get(apiUrl).then(displayTemperature).then(input.value = "");
+            };
+
+            function searchF(event) {
+
+                    if (input.value) {
+                        city = input.value;
+                    } else {
+                        city = cityElement.firstChild.data;
+                    }
+                    
+                    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+                    axios.get(apiUrl).then(displayTemperature).then(input.value = "");
+                };
+                searchF({ target: "a#fahrenheit-link", buttons: 0, clientX: 658, clientY: 209, layerX: 658, layerY: 380 });
     </script>
 
 
