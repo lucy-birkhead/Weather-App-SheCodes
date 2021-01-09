@@ -72,14 +72,7 @@
     
         .container-1 {
             text-align: center;
-        }
-    
-        .col-4 {
-            text-align: center;
-        }
-    
-        .row {
-            color: white;
+            padding-top: 10px;
         }
     
         .github {
@@ -88,19 +81,31 @@
     
         }
 
+        .weather-app-wrapper {
+            border-style: solid;
+            border-color: gray;
+            border-width: 3px;
+            margin: 10px 300px 10px 300px;
+        }
+
      
     </style>
+
+    <div class="weather-app-wrapper">
     <div class="container-1">
         <form>
             <input type="search" placeholder="Enter your city" id="enterCity" autocomplete="off" />
             <input type="submit" class="btn btn-primary w-20" value="Search">
         </form>
     </div>
-    <br />
-    <h1 id="city">Corrales</h1>
-    <p> </p>
-    <h2>Current Conditions:</h2>
 
+    <br />
+
+    <h1 id="city">Corrales</h1>
+
+    <p> </p>
+
+    <h2>Current Conditions:</h2>
 
     <h4 id="description"><em>Clear</em></h4>
 
@@ -121,46 +126,9 @@
             </ul>
         </h3>
     </div>
-
-
-
-
-
-
-
-    <br />
-    <div class="row">
-        <div class="col-4"><i class="fas fa-cloud-sun"></i></div>
-        <div class="col-4">Saturday</div>
-        <div class="col-4">67&deg;</div>
     </div>
     <br />
-    <div class="row">
-        <div class="col-4"><i class="fas fa-cloud"></i></div>
-        <div class="col-4">Sunday</div>
-        <div class="col-4">56&deg;</div>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-4"><i class="fas fa-cloud"></i></div>
-        <div class="col-4">Monday</div>
-        <div class="col-4">62&deg;</div>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-4"><i class="far fa-sun"></i></div>
-        <div class="col-4">Tuesday</div>
-        <div class="col-4">57&deg;</div>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-4"><i class="far fa-sun"></i></div>
-        <div class="col-4">Wednesday</div>
-        <div class="col-4">56&deg;</div>
-    </div>
-    <br />
-    <a href="https://github.com/lucy-birkhead/Weather-App-SheCodes" class="github">Weather-App Github Repository</a>
-    <br />
+   
     <p>
         Coded by Lucy B.
     </p>
